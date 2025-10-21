@@ -41,3 +41,22 @@ phpunit.phar
 /backend/web/index.php
 /backend/web/index-test.php
 /backend/web/robots.txt
+
+# environment variables files
+/.env
+/.env.*
+
+# runtime directories
+/runtime/
+/common/runtime/
+/backend/runtime/
+/frontend/runtime/
+/console/runtime/
+
+# assets cache
+/backend/web/assets/
+/frontend/web/assets/
+
+# database files
+*.db
+*.sql
