@@ -9,8 +9,8 @@ $config = [
     ],
 ];
 
-if (YII_ENV_DEV) {
-    // configuration adjustments for 'dev' environment
+// Só ativa debug e gii em ambiente de desenvolvimento
+if (getenv('YII_ENV') === 'dev' || defined('YII_ENV_DEV') && YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => \yii\debug\Module::class,
