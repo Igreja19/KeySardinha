@@ -3,9 +3,9 @@ return [
     'components' => [
         'db' => [
             'class' => \yii\db\Connection::class,
-            'dsn' => 'mysql:host=' . env('DB_HOST') . ';dbname=' . env('DB_NAME'),
-            'username' => env('DB_USER'),
-            'password' => env('DB_PASSWORD'),
+            'dsn' => 'mysql:host=' . ($_ENV['DB_HOST'] ?? 'localhost') . ';dbname=' . ($_ENV['DB_NAME'] ?? 'keysardinhadb'),
+            'username' => $_ENV['DB_USER'] ?? 'root',
+            'password' => $_ENV['DB_PASSWORD'] ?? '',
             'charset' => 'utf8',
             'enableSchemaCache' => true,
             'schemaCacheDuration' => 3600,
@@ -13,15 +13,7 @@ return [
         'mailer' => [
             'class' => \yii\symfonymailer\Mailer::class,
             'viewPath' => '@common/mail',
-            'useFileTransport' => false,
-            'transport' => [
-                'scheme' => 'smtps',
-                'host' => env('SMTP_HOST', 'smtp.gmail.com'),
-                'username' => env('SMTP_USER'),
-                'password' => env('SMTP_PASS'),
-                'port' => env('SMTP_PORT', 465),
-                'dsn' => 'native://default',
-            ],
+            'useFileTransport' => true, // Mantém como true por segurança
         ],
         'cache' => [
             'class' => \yii\caching\FileCache::class,
