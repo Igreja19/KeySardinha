@@ -6,6 +6,9 @@ return [
             'dsn' => 'mysql:host=' . ($_ENV['MYSQLHOST'] ?? $_ENV['DB_HOST'] ?? 'localhost') . 
                      ';dbname=' . ($_ENV['MYSQLDATABASE'] ?? $_ENV['DB_NAME'] ?? 'railway') . 
                      ';port=' . ($_ENV['MYSQLPORT'] ?? $_ENV['DB_PORT'] ?? '3306'),
+
+                     // 'mysql:host=localhost;dbname=keysardinha_db'
+
             'username' => $_ENV['MYSQLUSER'] ?? $_ENV['DB_USERNAME'] ?? $_ENV['DB_USER'] ?? 'root',
             'password' => $_ENV['MYSQLPASSWORD'] ?? $_ENV['DB_PASSWORD'] ?? '',
             'charset' => 'utf8',
