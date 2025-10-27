@@ -1,0 +1,44 @@
+<?php
+require __DIR__ . '/../../vendor/autoload.php';
+
+echo "<h1>Debug Database Connection</h1>";
+echo "<pre>";
+
+// Ver todas as variáveis de ambiente relacionadas com DB
+$dbVars = ['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD', 'DB_PORT'];
+foreach ($dbVars as $var) {
+    echo "$var: " . ($_ENV[$var] ?? 'NOT SET') . "\n";
+}
+
+echo "\n=== Testing DB Connection ===\n";
+try {
+    $host = $_ENV['DB_HOST'] ?? 'localhost';
+    $dbname = $_ENV['DB_NAME'] ?? 'keysardinhadb';
+    $username = $_ENV['DB_USER'] ?? 'root';
+    $password = $_ENV['DB_PASSWORD'] ?? '';
+    $port = $_ENV['DB_PORT'] ?? '3306';
+    
+    echo "Connecting to: mysql:host=$host;dbname=$dbname;port=$port\n";
+    
+    $pdo = new PDO(
+        "mysql:host=$host;dbname=$dbname;port=$port",
+        $username,
+        $password,
+        [
+            PDO::ATTR_TIMEOUT => 5,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        ]
+    );
+    
+    echo "✅ Database connection SUCCESSFUL!\n";
+    
+    // Testar se consegue fazer uma query simples
+    $stmt = $pdo->query("SELECT 1 as test");
+    $result = $stmt->fetch();
+    echo "✅ Query test SUCCESSFUL: " . $result['test'] . "\n";
+    
+} catch (Exception $e) {
+    echo "❌ Database connection FAILED: " . $e->getMessage() . "\n";
+}
+
+echo "</pre>";

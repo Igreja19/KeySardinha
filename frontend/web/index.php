@@ -1,5 +1,5 @@
 <?php
-
+<?php
 // Carrega o autoloader PRIMEIRO
 require __DIR__ . '/../../vendor/autoload.php';
 
