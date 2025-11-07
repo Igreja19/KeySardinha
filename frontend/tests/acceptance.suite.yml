@@ -1,0 +1,12 @@
+suite_namespace: frontend\tests\acceptance
+actor: AcceptanceTester
+modules:
+    enabled:
+        - WebDriver:
+            url: http://projeto/frontend/web/
+            browser: chrome
+        - Yii2:
+            configFile: 'config/test.php'
+            part: [orm,fixtures]
+            cleanup: true
+            entryScript: index-test.php
